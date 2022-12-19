@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<title></title>
+{% endblock %}
+
+
+
+{% block contenido %}
+<div class="alert alert-success display-1">LISTA DE INSCRITOS</div>
+{% if inscritos %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>TELEFONO</th>
+            <th>FECHA DE INSCRIPCION</th>
+            <th>INSTITUCION</th>
+            <th>HORA DE INSCRIPCION</th>
+            <th>ESTADO</th>
+            <th>OBSERVACION</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inscrito in inscritos %}
+        <tr>
+            <td scope ="row">{{ inscrito.id}}</td>
+            <td>{{ inscrito.nombre}}</td>
+            <td>{{ inscrito.telefono}}</td>
+            <td>{{ inscrito.fecha_inscripcion}}</td>
+            <td>{{ inscrito.institucion}}</td>
+            <td>{{ inscrito.hora_inscripcion}}</td>
+            <td>{{ inscrito.estado}}</td>
+            <td>{{ inscrito.observacion}}</td>
+            <td><a href="/crud/eliminar_inscrito/{{inscrito.id}}" class="btn btn-success btn-sm"> <i class="bi bi-pencil"></i> Eliminar </a></td>
+            <td><a href="/crud/actualizar_inscrito/{{inscrito.id}}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Actualizar </a></td>
+        </tr>
+        {% endfor %}
+    </tbody>            
+</table>    
+{% else %}
+    <div class="alert alert-info">No hay inscrito que mostrar</div>
+{% endif %}
+
+<a href="../" class="btn btn-danger">VOLVER</a>
+<a href="/crud/agregar_inscrito" class="btn btn-info float-end">AGREGAR INSCRITO</a>
+{% endblock %}
